@@ -1,12 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React, {Fragment} from 'react';
+import React, {Fragment,useState, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,6 +6,8 @@ import {
   View,
   Text,
   StatusBar,
+  TouchableOpacity,
+  Dimensions 
 } from 'react-native';
 
 import {
@@ -23,10 +17,12 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { TabView, SceneMap } from 'react-native-tab-view';
+import * as GestureHandler from 'react-native-gesture-handler';
 
-const App = () => {
-  return (
-    <Fragment>
+
+const FirstRoute = () => (
+  <Fragment>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
@@ -41,6 +37,11 @@ const App = () => {
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Step One</Text>
+              <TouchableOpacity onPress={()=>{testFunction();}}>
+                <Text>
+                  Hello
+                </Text>
+              </TouchableOpacity>
               <Text style={styles.sectionDescription}>
                 Edit <Text style={styles.highlight}>App.js</Text> to change this
                 screen and then come back to see your edits.
@@ -69,10 +70,51 @@ const App = () => {
         </ScrollView>
       </SafeAreaView>
     </Fragment>
+);
+
+const SecondRoute = () => (
+  <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
+);
+
+const App = () => {
+  // const [rar, setRar] = useState({routes:[{key:'first',title:'First'},{key:'second',title:'Second'}]});
+  // const [index, setIndex] = useState(0);
+  const [rar, setRar] = useState({
+    index: 0,
+    routes: [
+        { key: 'first', title: 'First' },
+        { key: 'second', title: 'Second' },
+    ]
+});
+
+  useEffect(() => {
+    
+  });
+
+  testFunction=()=>{
+    // alert('in test func')
+    setRar({index:1})
+    alert('press function')
+  }
+  
+  return (
+    <TabView
+          navigationState={rar}
+          renderScene={SceneMap({
+            first: FirstRoute,
+            second: SecondRoute,
+          })}
+          onIndexChange={index => setRar({ ...rar, index })}
+          initialLayout={{ width: Dimensions.get('window').width }}
+          swipeEnabled ={true}
+        />
   );
 };
 
 const styles = StyleSheet.create({
+  scene: {
+    flex: 1,
+  },
   scrollView: {
     backgroundColor: Colors.lighter,
   },
