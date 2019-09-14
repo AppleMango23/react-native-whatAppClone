@@ -17,8 +17,7 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import { TabView, SceneMap } from 'react-native-tab-view';
-import * as GestureHandler from 'react-native-gesture-handler';
+import { TabView, SceneMap,TabBar } from 'react-native-tab-view';
 
 
 const FirstRoute = () => (
@@ -76,14 +75,24 @@ const SecondRoute = () => (
   <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
 );
 
+const thirdRoute = () => (
+  <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
+);
+
+const forthRoute = () => (
+  <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
+);
+
 const App = () => {
   // const [rar, setRar] = useState({routes:[{key:'first',title:'First'},{key:'second',title:'Second'}]});
   // const [index, setIndex] = useState(0);
   const [rar, setRar] = useState({
     index: 0,
     routes: [
-        { key: 'first', title: 'First' },
-        { key: 'second', title: 'Second' },
+        { key: 'first', title: 'camera' },
+        { key: 'second', title: 'chats' },
+        { key: 'third', title: 'status' },
+        { key: 'forth', title: 'calls' },
     ]
 });
 
@@ -96,18 +105,36 @@ const App = () => {
     setRar({index:1})
     alert('press function')
   }
+
+  
   
   return (
+    <>
+    <View style={{backgroundColor:'#185942',height:50}}>
+      <Text style={{color:'white',fontSize:20,paddingLeft:10,paddingTop:14}}>WhatsApp</Text></View>
     <TabView
-          navigationState={rar}
-          renderScene={SceneMap({
-            first: FirstRoute,
-            second: SecondRoute,
-          })}
-          onIndexChange={index => setRar({ ...rar, index })}
-          initialLayout={{ width: Dimensions.get('window').width }}
-          swipeEnabled ={true}
+      navigationState={rar}
+      renderScene={SceneMap({
+        first: FirstRoute,
+        second: SecondRoute,
+        third: thirdRoute,
+        forth: forthRoute,
+      })}
+      onIndexChange={index => setRar({ ...rar, index })}
+      initialLayout={{ width: Dimensions.get('window').width }}
+      swipeEnabled ={true}
+      renderTabBar={props =>
+        <TabBar
+          {...props}
+          indicatorStyle={{ backgroundColor: 'white' }}
+          style={{ backgroundColor: '#185942',}}
+          renderIcon={
+            props => getTabBarIcon(props)
+          }
         />
+      }
+    />
+    </>
   );
 };
 
