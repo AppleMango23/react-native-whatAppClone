@@ -7,6 +7,8 @@
 -will be adding fingerprint<br>
 -will be adding parallax on the header<br>
 -will be adding search on the posts<br>
+-will be adding icon too<br>
+-will be adding bottom modal slide in<br>
 
 ## Screenshot of the application
 <p align="center">
