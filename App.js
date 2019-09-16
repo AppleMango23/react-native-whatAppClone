@@ -2,7 +2,6 @@ import React, {Fragment,useState, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
   StatusBar,
@@ -13,6 +12,7 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 import  HappyNewYear  from './src/components/headerPart';
+
 
 const App = () => {
   return (

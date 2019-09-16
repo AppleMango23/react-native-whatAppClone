@@ -18,6 +18,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import { TabView, SceneMap,TabBar } from 'react-native-tab-view';
+import Icon from "react-native-vector-icons/Ionicons";
 
 const FirstRoute = () => (
   <Fragment>
@@ -37,7 +38,7 @@ const FirstRoute = () => (
               <Text style={styles.sectionTitle}>Step One</Text>
               <TouchableOpacity onPress={()=>{}}>
                 <Text>
-                  Hello
+                  Good day
                 </Text>
               </TouchableOpacity>
               <Text style={styles.sectionDescription}>
@@ -88,7 +89,7 @@ const HappyNewYear = () => {
   const [rar, setRar] = useState({
     index: 0,
     routes: [
-        { key: 'first', title: 'camera' },
+        { key: 'first', title: 'camera'},
         { key: 'second', title: 'chats' },
         { key: 'third', title: 'status' },
         { key: 'forth', title: 'calls' },
@@ -117,11 +118,18 @@ const HappyNewYear = () => {
           indicatorStyle={{ backgroundColor: 'white' }}
           style={{ backgroundColor: '#185942',}}
           // renderIcon={({ route, focused, color }) => (
-            // <Text style={{color:'white'}}></Text>
-            // <Icon
-            //   name={focused ? 'abums' : 'albums-outlined'}
-            //   color={color}
-            // />
+          //   <View style={{width:20}}>
+          //      <Icon
+          //       name={focused ? 'ios-body' : 'ios-man'}
+          //       size={22}
+          //       color={color}
+          //     />    
+          //      <Icon
+          //     name={route.key == 'first' ? 'ios-body' : 'ios-man'}
+          //     size={22}
+          //     color={color}
+          //     />   
+          //   </View>
           // )}
         />
       }
